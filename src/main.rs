@@ -7,7 +7,8 @@ fn main() {
     let args: Vec<String> = env::args().collect();
     let mut instructions: Vec<String> = Vec::new();
     let mut symbols: HashMap<String, u16> = HashMap::from(
-        [(String::from("SCREEN"),16384),
+        // numbers are memory locations that the symbols refer to by default
+        [(String::from("SCREEN"),16384), 
         (String::from("KBD"),24576),
         (String::from("SP"), 0),
         (String::from("LCL"), 1),
