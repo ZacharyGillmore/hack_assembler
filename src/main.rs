@@ -4,7 +4,7 @@ use std::fs;
 use std::io::Write;
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
+    let args: Vec<String> = env::args().collect(); // arg[1] is the input file name/path 
     let mut instructions: Vec<String> = Vec::new();
     let mut symbols: HashMap<String, u16> = HashMap::from(
         // numbers are memory locations that the symbols refer to by default
@@ -22,7 +22,7 @@ fn main() {
     }
     // put file reading in block to drop all comments from memory
     {
-        let filename = args[1].as_str();
+        let filename = args[1].as_str(); //input file
         println!("Reading file {}", filename);
 
         let file_contents = fs::read_to_string(filename).expect("Couldn't read file");
@@ -43,7 +43,7 @@ fn main() {
                 Some('/') => (),
                 Some('(') => {
                     let symb_name = String::from(&instr[1..instr.len() - 1]);
-                    symbols.insert(symb_name, instructions.len().try_into().unwrap());
+                    symbols.insert(symb_name, instructions.len() as u16);
                 }
                 Some(_) => instructions.push(instr),
                 None => (),
